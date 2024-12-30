@@ -1,19 +1,18 @@
-package com.springAPI.SpringProject.model.region;
+package com.springAPI.SpringProject.model.departement;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.springAPI.SpringProject.model.departement.Departement;
+import com.springAPI.SpringProject.model.commune.Commune;
+import com.springAPI.SpringProject.model.region.Region;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "touslesregions")
-public class Region {
+@Table(name = "touslesdepartements")
+public class Departement {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "touslesregions_id_gen")
-    @SequenceGenerator(name = "touslesregions_id_gen", sequenceName = "touslesregions_gid_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "touslesdepartements_id_gen")
+    @SequenceGenerator(name = "touslesdepartements_id_gen", sequenceName = "limite_departements_senegal4326_gid_seq", allocationSize = 1)
     @Column(name = "gid", nullable = false)
     private Integer id;
 
@@ -44,9 +43,13 @@ public class Region {
     @Column(name = "shape_area", precision = 38, scale = 2)
     private BigDecimal shapeArea;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "region_id")
+    private Region region;
 
-    @OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
-    private List<Departement> departements;
+
+    @OneToMany(mappedBy = "departement", fetch = FetchType.LAZY)
+    private List<Commune> communes;
 
     public Integer getId() {
         return id;
@@ -128,12 +131,21 @@ public class Region {
         this.shapeArea = shapeArea;
     }
 
-    public List<Departement> getDepartements() {
-        return departements;
+    public Region getRegion() {
+        return region;
     }
 
-    public void setDepartements(List<Departement> departements) {
-        this.departements = departements;
+    public void setRegion(Region region) {
+        this.region = region;
     }
+
+    public List<Commune> getCommunes() {
+        return communes;
+    }
+
+    public void setCommunes(List<Commune> communes) {
+        this.communes = communes;
+    }
+
 
 }
