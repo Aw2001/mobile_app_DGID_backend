@@ -5,6 +5,8 @@ import com.springAPI.SpringProject.repository.RecensementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RecensementService {
     @Autowired
@@ -12,5 +14,10 @@ public class RecensementService {
 
     public Recensement enregistrerRecensement(Recensement recensement) {
         return recensementRepository.save(recensement);
+    }
+
+    public List<Recensement> getAllRecensementsActifs() {
+        System.out.println("eeeeeeeeeeeeeeeeeeeeeeee");
+        return recensementRepository.findRecensementsActifs();
     }
 }

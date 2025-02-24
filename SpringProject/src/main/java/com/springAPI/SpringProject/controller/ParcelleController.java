@@ -22,7 +22,7 @@ public class ParcelleController {
     }
 
     @GetMapping("/bySection")
-    public List<String> getParcellesBySectionNumSec(@RequestParam String sectionNumSec) {
-        return parcelleService.getAllParcellesBySectionNumSec(sectionNumSec);
+    public List<String> getParcellesBySectionNumSec(@RequestParam String sectionNumSec, @RequestParam String region, @RequestParam String nomDepart, @RequestParam String nomCommun) {
+        return parcelleService.getAllParcellesBySectionNumSec(sectionNumSec, region, nomDepart, nomCommun);
     }
 }

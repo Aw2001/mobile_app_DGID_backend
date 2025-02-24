@@ -1,11 +1,15 @@
 package com.springAPI.SpringProject.model.recensement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.springAPI.SpringProject.model.bienLoue.BienLoue;
 import com.springAPI.SpringProject.model.bienRecense.BienRecense;
 import com.springAPI.SpringProject.model.recensementUtilisateur.RecensementUtilisateur;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -36,9 +40,27 @@ public class Recensement {
     @Column(name = "commentaire", columnDefinition = "TEXT")
     private String commentaire;
 
+    @Column(name = "region", length = 50)
+    private String region;
+
+    @Column(name = "departement", length = 50)
+    private String departement;
+
+    @Column(name = "commune", length = 50)
+    private String commune;
+
+    @Column(name = "section", length = 50)
+    private String section;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime dateCreation;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "recensement", fetch = FetchType.LAZY)
     private List<BienRecense> bienRecenses;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "recensement", fetch = FetchType.LAZY)
     private List<RecensementUtilisateur> recensementUtilisateurs;
 
@@ -107,6 +129,14 @@ public class Recensement {
         this.commentaire = commentaire;
     }
 
+    public LocalDateTime getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(LocalDateTime dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
     public List<BienRecense> getBienRecenses() {
         return bienRecenses;
     }
@@ -121,6 +151,38 @@ public class Recensement {
 
     public void setRecensementUtilisateurs(List<RecensementUtilisateur> recensementUtilisateurs) {
         this.recensementUtilisateurs = recensementUtilisateurs;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(String departement) {
+        this.departement = departement;
+    }
+
+    public String getCommune() {
+        return commune;
+    }
+
+    public void setCommune(String commune) {
+        this.commune = commune;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
     }
 
 }

@@ -16,6 +16,7 @@ public class RecensementUtilisateur {
     @JoinColumn(name  = "identifiant_recensement", nullable = false)
     private Recensement recensement;
 
+
     @MapsId("identifiantUtilisateur")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "identifiant_utilisateur")

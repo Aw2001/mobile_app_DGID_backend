@@ -11,6 +11,8 @@ import com.springAPI.SpringProject.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RecensementUtilisateurService {
 
@@ -33,7 +35,7 @@ public class RecensementUtilisateurService {
     public RecensementUtilisateur enregistrerRecensementUtilisateur(RecensementUtilisateurDto dto) {
         // Vérification des entités
         Recensement recensement = recensementRepository.findByNumRecensement(dto.getIdentifiantRecensement());
-        Utilisateur utilisateur = utilisateurRepository.findByIdentifiant(dto.getIdentifiantUtilisateur());
+        Utilisateur utilisateur = utilisateurRepository.findByEmail(dto.getIdentifiantUtilisateur());
 
         // Création de l'association
         RecensementUtilisateurId id = new RecensementUtilisateurId();
@@ -46,5 +48,9 @@ public class RecensementUtilisateurService {
         recensementUtilisateur.setUtilisateur(utilisateur);
 
         return recensementUtilisateurRepository.save(recensementUtilisateur);
+    }
+
+    public List<Recensement> getAllRecensementUtilisateur(String email) {
+        return recensementUtilisateurRepository.findRecensementsUtilisateurActifs(email);
     }
 }

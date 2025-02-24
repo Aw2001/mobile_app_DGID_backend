@@ -3,14 +3,17 @@ package com.springAPI.SpringProject.controller;
 import com.springAPI.SpringProject.dto.BienDto;
 import com.springAPI.SpringProject.model.bien.Bien;
 import com.springAPI.SpringProject.service.BienService;
+import com.springAPI.SpringProject.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/biens")
+
 public class BienController {
     @Autowired
     private BienService bienService;
@@ -32,6 +35,7 @@ public class BienController {
 
 
     }
+
 
     @GetMapping("/research/{identifiant}")
     public Optional<Bien> rechercherBien(@PathVariable String identifiant) {

@@ -17,7 +17,7 @@ public class ParcelleService {
         return parcelleRepository.findAllParcelles();
     }
 
-    public List<String> getAllParcellesBySectionNumSec(String sectionNumSec) {
-        return parcelleRepository.findAllParcellesBySectionNumSec(sectionNumSec);
+    public List<String> getAllParcellesBySectionNumSec(String sectionNumSec, String region, String nomDepart, String nomCommun) {
+        return parcelleRepository.findAllParcellesBySectionNumSec(sectionNumSec, region, nomDepart, nomCommun);
     }
 }

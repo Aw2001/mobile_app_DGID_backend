@@ -1,5 +1,6 @@
 package com.springAPI.SpringProject.model.bien;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.springAPI.SpringProject.model.image.Image;
 import com.springAPI.SpringProject.model.bienLoue.BienLoue;
 import com.springAPI.SpringProject.model.bienRecense.BienRecense;
@@ -253,11 +254,14 @@ public class Bien {
     @OneToMany(mappedBy = "bien", fetch = FetchType.LAZY)
     private List<Image> images;
 
+    @JsonIgnoreProperties("bienLoues")
     @OneToMany(mappedBy = "bienLoue", fetch = FetchType.LAZY)
     private List<BienLoue> bienLoues;
 
+    @JsonIgnoreProperties("bienRecenses")
     @OneToMany(mappedBy = "bienRecense", fetch = FetchType.LAZY)
     private List<BienRecense> bienRecenses;
+
 
     public String getIdentifiant() {
         return identifiant;

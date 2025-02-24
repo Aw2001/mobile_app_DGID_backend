@@ -88,6 +88,7 @@ public class BienDto {
     private String typeParcelle;
     private String commentaire;
     private String idProprietaire;
+    private String idLocataire;
     private String idParcelle;
 
 
@@ -709,6 +710,14 @@ public class BienDto {
 
     public void setIdProprietaire(String idProprietaire) {
         this.idProprietaire = idProprietaire;
+    }
+
+    public String getIdLocataire() {
+        return idLocataire;
+    }
+
+    public void setIdLocataire(String idLocataire) {
+        this.idLocataire = idLocataire;
     }
 
     public String getIdParcelle() {

@@ -14,8 +14,8 @@ public interface ParcelleRepository extends JpaRepository<Parcelle, String> {
     @Query("SELECT p from Parcelle p")
     List<Parcelle> findAllParcelles();
 
-    @Query("SELECT p.nicad from Parcelle p WHERE p.section.numeroSec = :sectionNumSec")
-    List<String> findAllParcellesBySectionNumSec(@Param("sectionNumSec") String sectionNumSec);
+    @Query("SELECT p.nicad from Parcelle p WHERE p.section.numeroSec = :sectionNumSec AND p.region = :region AND p.nomDepart = :nomDepart AND p.nomCommun = :nomCommun")
+    List<String> findAllParcellesBySectionNumSec(@Param("sectionNumSec") String sectionNumSec, @Param("region") String region, @Param("nomDepart") String nomDepart, @Param("nomCommun") String nomCommun);
 
     @Query("SELECT p from Parcelle p WHERE p.nicad= :nicad")
     Parcelle findByNicad(@Param("nicad") String nicad);
