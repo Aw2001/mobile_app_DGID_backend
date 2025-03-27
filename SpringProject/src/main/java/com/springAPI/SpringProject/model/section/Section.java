@@ -1,5 +1,7 @@
 package com.springAPI.SpringProject.model.section;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.springAPI.SpringProject.model.commune.Commune;
 import com.springAPI.SpringProject.model.parcelle.Parcelle;
 import jakarta.persistence.*;
@@ -43,9 +45,11 @@ public class Section {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "commune_id")
+    @JsonBackReference
     private Commune commune;
 
     @OneToMany(mappedBy = "section", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Parcelle> parcelles;
 
 

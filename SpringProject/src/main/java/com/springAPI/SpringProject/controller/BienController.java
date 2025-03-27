@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -33,7 +34,6 @@ public class BienController {
         Bien bienMisAJour = bienService.modifierBien(recensementId, dto);
         return ResponseEntity.ok(bienMisAJour);
 
-
     }
 
 
@@ -41,5 +41,11 @@ public class BienController {
     public Optional<Bien> rechercherBien(@PathVariable String identifiant) {
         return bienService.rechercherBien(identifiant);
     }
+
+    @GetMapping("/all")
+    public List<Bien> getAllBien() {
+        return bienService.getAllBiens();
+    }
+
 
 }

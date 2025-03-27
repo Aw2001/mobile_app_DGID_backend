@@ -1,5 +1,6 @@
 package com.springAPI.SpringProject.model.image;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.springAPI.SpringProject.model.bien.Bien;
 import jakarta.persistence.*;
 
@@ -27,6 +28,7 @@ public class Image {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "identifiant_bien")
+    @JsonBackReference
     private Bien bien;
 
     public Long getId() {

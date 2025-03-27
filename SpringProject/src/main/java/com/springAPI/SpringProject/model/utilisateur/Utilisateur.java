@@ -18,10 +18,85 @@ import java.util.List;
 
 @Entity
 @Table(name = "touslesutilisateurs")
-@Getter
-@Setter
+
 public class Utilisateur implements UserDetails {
 
+
+    public String getIdentifiant() {
+        return identifiant;
+    }
+
+    public void setIdentifiant(String identifiant) {
+        this.identifiant = identifiant;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Instant getLastLogoutTime() {
+        return lastLogoutTime;
+    }
+
+    public void setLastLogoutTime(Instant lastLogoutTime) {
+        this.lastLogoutTime = lastLogoutTime;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public LocalDateTime getVerificationCodeExpiresAt() {
+        return verificationCodeExpiresAt;
+    }
+
+    public void setVerificationCodeExpiresAt(LocalDateTime verificationCodeExpiresAt) {
+        this.verificationCodeExpiresAt = verificationCodeExpiresAt;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<RecensementUtilisateur> getRecensementUtilisateurs() {
+        return recensementUtilisateurs;
+    }
+
+    public void setRecensementUtilisateurs(List<RecensementUtilisateur> recensementUtilisateurs) {
+        this.recensementUtilisateurs = recensementUtilisateurs;
+    }
 
     //email
     @Id
@@ -95,5 +170,14 @@ public class Utilisateur implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+    @Override
+    public String getPassword() {
+        return password;
     }
 }

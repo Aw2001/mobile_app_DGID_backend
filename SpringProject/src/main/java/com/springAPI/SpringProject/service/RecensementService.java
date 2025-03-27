@@ -20,4 +20,7 @@ public class RecensementService {
         System.out.println("eeeeeeeeeeeeeeeeeeeeeeee");
         return recensementRepository.findRecensementsActifs();
     }
+    public long getNumberOfRecensements() {
+        return recensementRepository.countRecensements();
+    }
 }

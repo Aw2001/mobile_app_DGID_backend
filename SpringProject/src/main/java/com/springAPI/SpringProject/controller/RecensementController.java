@@ -30,5 +30,10 @@ public class RecensementController {
         return ResponseEntity.ok(recensements);
     }
 
+    @GetMapping("/count")
+    public Long getNumberOfRecensements(){
+        return recensementService.getNumberOfRecensements();
+    }
+
     //lister les recensements actifs en fonction de l'utilisateur connecté
 }

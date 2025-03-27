@@ -1,13 +1,20 @@
 package com.springAPI.SpringProject.model.proprietaire;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.springAPI.SpringProject.model.bien.Bien;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
+
 @Entity
 @Table(name = "touslesproprietaires")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Proprietaire {
     @Id
     @Column(name = "num_identifiant", nullable = false, unique = true, length = 50)
@@ -15,67 +22,6 @@ public class Proprietaire {
 
     @Column(name = "nom", length = 50)
     private String nom;
-
-    @Column(name = "prenom")
-    private String prenom;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "type_identifiant", length = 50)
-    private String typeIdentifiant;
-
-    @Column(name = "date_naissance")
-    private LocalDate dateNaissance;
-
-    @Column(name = "lieu_naissance")
-    private String lieuNaissance;
-
-    @Column(name = "date_delivrance_identifiant")
-    private LocalDate dateDelivranceIdentifiant;
-
-    @Column(name = "date_expiration_identifiant")
-    private LocalDate dateExpirationIdentifiant;
-
-    @Column(name = "statut", length = 50)
-    private String statut;
-
-    @Column(name = "salarie", length = 20)
-    private String salarie;
-
-    @Column(name = "civilite", length = 20)
-    private String civilite;
-
-    @Column(name = "ninea", length = 50)
-    private String ninea;
-
-    @Column(name = "rencontre", length = 20)
-    private String rencontre;
-
-    @Column(name = "telephone", length = 50)
-    private String telephone;
-
-    @Column(name = "telephone_contribuable", length = 50)
-    private String telephoneContribuable;
-
-
-    @Column(name = "valeur_locative_proprietaire")
-    private Double valeurLocativeProprietaire;
-
-    @Column(name = "enregistre", length = 20)
-    private String enregistre;
-
-    @Column(name = "pensionne", length = 20)
-    private String pensionne;
-
-    @Column(name = "autre_propriete", length = 20)
-    private String autrePropriete;
-
-    @Column(name = "commentaire", length = Integer.MAX_VALUE)
-    private String commentaire;
-
-    @OneToMany(mappedBy = "proprietaire", fetch = FetchType.LAZY)
-    private List<Bien> biens;
 
     public String getNumIdentifiant() {
         return numIdentifiant;
@@ -108,6 +54,7 @@ public class Proprietaire {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getTypeIdentifiant() {
         return typeIdentifiant;
     }
@@ -203,6 +150,7 @@ public class Proprietaire {
     public void setTelephoneContribuable(String telephoneContribuable) {
         this.telephoneContribuable = telephoneContribuable;
     }
+
     public Double getValeurLocativeProprietaire() {
         return valeurLocativeProprietaire;
     }
@@ -242,6 +190,7 @@ public class Proprietaire {
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
     }
+
     public List<Bien> getBiens() {
         return biens;
     }
@@ -250,4 +199,80 @@ public class Proprietaire {
         this.biens = biens;
     }
 
-}
+    @Column(name = "prenom")
+    private String prenom;
+
+    @JsonIgnore
+    @Column(name = "email")
+    private String email;
+
+    @JsonIgnore
+    @Column(name = "type_identifiant", length = 50)
+    private String typeIdentifiant;
+
+
+    @Column(name = "date_naissance")
+    private LocalDate dateNaissance;
+
+    @Column(name = "lieu_naissance")
+    private String lieuNaissance;
+
+    @JsonIgnore
+    @Column(name = "date_delivrance_identifiant")
+    private LocalDate dateDelivranceIdentifiant;
+
+    @JsonIgnore
+    @Column(name = "date_expiration_identifiant")
+    private LocalDate dateExpirationIdentifiant;
+
+    @Column(name = "statut", length = 50)
+    private String statut;
+
+    @Column(name = "salarie", length = 20)
+    private String salarie;
+
+    @JsonIgnore
+    @Column(name = "civilite", length = 20)
+    private String civilite;
+
+    @Column(name = "ninea", length = 50)
+    private String ninea;
+
+    @JsonIgnore
+    @Column(name = "rencontre", length = 20)
+    private String rencontre;
+
+    @JsonIgnore
+    @Column(name = "telephone", length = 50)
+    private String telephone;
+
+    @JsonIgnore
+    @Column(name = "telephone_contribuable", length = 50)
+    private String telephoneContribuable;
+
+    @JsonIgnore
+    @Column(name = "valeur_locative_proprietaire")
+    private Double valeurLocativeProprietaire;
+
+    @JsonIgnore
+    @Column(name = "enregistre", length = 20)
+    private String enregistre;
+
+    @JsonIgnore
+    @Column(name = "pensionne", length = 20)
+    private String pensionne;
+
+    @JsonIgnore
+    @Column(name = "autre_propriete", length = 20)
+    private String autrePropriete;
+
+    @JsonIgnore
+    @Column(name = "commentaire", length = Integer.MAX_VALUE)
+    private String commentaire;
+
+
+    @OneToMany(mappedBy = "proprietaire", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Bien> biens;
+
+    }

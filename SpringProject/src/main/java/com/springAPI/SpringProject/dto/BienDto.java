@@ -1,96 +1,12 @@
 package com.springAPI.SpringProject.dto;
+import lombok.Getter;
+import lombok.Setter;
 
-import com.springAPI.SpringProject.model.parcelle.Parcelle;
-import com.springAPI.SpringProject.model.proprietaire.Proprietaire;
-import jakarta.persistence.*;
-
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.List;
 
+
 public class BienDto {
-
-    private String identifiant;
-    private Double superficie;
-    private String proprieteEnLocation;
-    private String adresse;
-    private String quartier;
-    private String village;
-    private String numPorteAdm;
-    private String codeDeRueAdm;
-    private String nomRue;
-    private String typeLot;
-    private Integer niveauLot;
-    private String localisationLot;
-    private String situationLot;
-    private String numLot;
-    private Double valeurLocativeAnnuelle;
-    private Double valeurLocativeAnnuelleSaisie;
-    private String numTitreFoncier;
-    private LocalDate dateAcquisition;
-    private String typeOccupation;
-    private String autreTypeOccupation;
-    private LocalDate dateDelivranceTypeOccupation;
-    private String usagee;
-    private String numCompteurSde;
-    private String numCompteurSenelec;
-    private List<String> photoUrl;
-    private String typeConstruction;
-    private String toiture;
-    private String typeCloture;
-    private String etatCloture;
-    private String typeRevetement;
-    private String etatRevetement;
-    private String situationRoute;
-    private String typeRoute;
-    private String garage;
-    private String qualitePorteFenetre;
-    private String typeCarrelage;
-    private String menuiserie;
-    private String conceptionPieces;
-    private String appareilsSanitaires;
-    private String parkingInterieur;
-    private Integer nbAscenseurs;
-    private Integer nbSalleBain;
-    private Integer nbSalleEau;
-    private Integer nbPieceReception;
-    private Integer nbTotalPiece;
-    private Integer nbEtage;
-    private String confort;
-    private Double valeurLocativeMensuelle;
-    private Double valeurLocativeMensuelleSaisie;
-    private String escalier;
-    private String videOrdure;
-    private String monteCharge;
-    private String groupeElectrogene;
-    private String dependanceIsolee;
-    private String garageSouterrain;
-    private String systemeClimatisation;
-    private String systemeDomotique;
-    private String balcon;
-    private String terrasse;
-    private String systemeSurveillance;
-    private String amenagementPaysager;
-    private String jardin;
-    private String piscine;
-    private String coursDeTennis;
-    private String coursGazonnee;
-    private String terrainGolf;
-    private String autre;
-    private String angle;
-    private String eclairagePublic;
-    private String murEnCiment;
-    private String attributsArchitecturaux;
-    private String trottoir;
-    private String nomVoirie;
-    private String typeVoirie;
-    private String nomAutreVoirie;
-    private String typeParcelle;
-    private String commentaire;
-    private String idProprietaire;
-    private String idLocataire;
-    private String idParcelle;
-
 
     public String getIdentifiant() {
         return identifiant;
@@ -99,6 +15,8 @@ public class BienDto {
     public void setIdentifiant(String identifiant) {
         this.identifiant = identifiant;
     }
+
+    private String identifiant;
 
     public Double getSuperficie() {
         return superficie;
@@ -123,6 +41,7 @@ public class BienDto {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
+
     public String getQuartier() {
         return quartier;
     }
@@ -138,6 +57,7 @@ public class BienDto {
     public void setVillage(String village) {
         this.village = village;
     }
+
     public String getNumPorteAdm() {
         return numPorteAdm;
     }
@@ -441,6 +361,7 @@ public class BienDto {
     public void setNbPieceReception(Integer nbPieceReception) {
         this.nbPieceReception = nbPieceReception;
     }
+
     public Integer getNbTotalPiece() {
         return nbTotalPiece;
     }
@@ -472,6 +393,7 @@ public class BienDto {
     public void setValeurLocativeMensuelle(Double valeurLocativeMensuelle) {
         this.valeurLocativeMensuelle = valeurLocativeMensuelle;
     }
+
     public Double getValeurLocativeMensuelleSaisie() {
         return valeurLocativeMensuelleSaisie;
     }
@@ -479,6 +401,7 @@ public class BienDto {
     public void setValeurLocativeMensuelleSaisie(Double valeurLocativeMensuelleSaisie) {
         this.valeurLocativeMensuelleSaisie = valeurLocativeMensuelleSaisie;
     }
+
     public String getEscalier() {
         return escalier;
     }
@@ -623,7 +546,6 @@ public class BienDto {
         this.autre = autre;
     }
 
-
     public String getAngle() {
         return angle;
     }
@@ -727,6 +649,89 @@ public class BienDto {
     public void setIdParcelle(String idParcelle) {
         this.idParcelle = idParcelle;
     }
+
+    private Double superficie;
+    private String proprieteEnLocation;
+    private String adresse;
+    private String quartier;
+    private String village;
+    private String numPorteAdm;
+    private String codeDeRueAdm;
+    private String nomRue;
+    private String typeLot;
+    private Integer niveauLot;
+    private String localisationLot;
+    private String situationLot;
+    private String numLot;
+    private Double valeurLocativeAnnuelle;
+    private Double valeurLocativeAnnuelleSaisie;
+    private String numTitreFoncier;
+    private LocalDate dateAcquisition;
+    private String typeOccupation;
+    private String autreTypeOccupation;
+    private LocalDate dateDelivranceTypeOccupation;
+    private String usagee;
+    private String numCompteurSde;
+    private String numCompteurSenelec;
+    private List<String> photoUrl;
+    private String typeConstruction;
+    private String toiture;
+    private String typeCloture;
+    private String etatCloture;
+    private String typeRevetement;
+    private String etatRevetement;
+    private String situationRoute;
+    private String typeRoute;
+    private String garage;
+    private String qualitePorteFenetre;
+    private String typeCarrelage;
+    private String menuiserie;
+    private String conceptionPieces;
+    private String appareilsSanitaires;
+    private String parkingInterieur;
+    private Integer nbAscenseurs;
+    private Integer nbSalleBain;
+    private Integer nbSalleEau;
+    private Integer nbPieceReception;
+    private Integer nbTotalPiece;
+    private Integer nbEtage;
+    private String confort;
+    private Double valeurLocativeMensuelle;
+    private Double valeurLocativeMensuelleSaisie;
+    private String escalier;
+    private String videOrdure;
+    private String monteCharge;
+    private String groupeElectrogene;
+    private String dependanceIsolee;
+    private String garageSouterrain;
+    private String systemeClimatisation;
+    private String systemeDomotique;
+    private String balcon;
+    private String terrasse;
+    private String systemeSurveillance;
+    private String amenagementPaysager;
+    private String jardin;
+    private String piscine;
+    private String coursDeTennis;
+    private String coursGazonnee;
+    private String terrainGolf;
+    private String autre;
+    private String angle;
+    private String eclairagePublic;
+    private String murEnCiment;
+    private String attributsArchitecturaux;
+    private String trottoir;
+    private String nomVoirie;
+    private String typeVoirie;
+    private String nomAutreVoirie;
+    private String typeParcelle;
+    private String commentaire;
+    private String idProprietaire;
+    private String idLocataire;
+    private String idParcelle;
+
+
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.springAPI.SpringProject.model.bien;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.springAPI.SpringProject.model.image.Image;
 import com.springAPI.SpringProject.model.bienLoue.BienLoue;
@@ -7,262 +8,19 @@ import com.springAPI.SpringProject.model.bienRecense.BienRecense;
 import com.springAPI.SpringProject.model.parcelle.Parcelle;
 import com.springAPI.SpringProject.model.proprietaire.Proprietaire;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.List;
 
+import java.time.LocalDate;
+
+
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "tousleslocaux")
 public class Bien {
-    @Id
-    @Column(name = "identifiant", nullable = false, unique = true, length = 50)
-    private String identifiant;
-
-    @Column(name = "superficie")
-    private Double superficie;
-
-    @Column(name = "propriete_en_location", length = 50)
-    private String proprieteEnLocation;
-
-    @Column(name = "adresse")
-    private String adresse;
-
-    @Column(name = "quartier")
-    private String quartier;
-
-    @Column(name = "village")
-    private String village;
-
-    @Column(name = "num_porte_adm", length = 50)
-    private String numPorteAdm;
-
-    @Column(name = "code_de_rue_adm", length = 50)
-    private String codeDeRueAdm;
-
-    @Column(name = "nom_rue")
-    private String nomRue;
-
-    @Column(name = "type_lot", length = 50)
-    private String typeLot;
-
-    @Column(name = "niveau_lot")
-    private Integer niveauLot;
-
-    @Column(name = "localisation_lot", length = 50)
-    private String localisationLot;
-
-    @Column(name = "situation_lot", length = 50)
-    private String situationLot;
-
-    @Column(name = "num_lot", length = 50)
-    private String numLot;
-
-    @Column(name = "valeur_locative_annuelle")
-    private Double valeurLocativeAnnuelle;
-
-    @Column(name = "valeur_locative_annuelle_saisie")
-    private Double valeurLocativeAnnuelleSaisie;
-
-    @Column(name = "num_titre_foncier", length = 50)
-    private String numTitreFoncier;
-
-    @Column(name = "date_acquisition")
-    private LocalDate dateAcquisition;
-
-    @Column(name = "type_occupation", length = 50)
-    private String typeOccupation;
-
-    @Column(name = "autre_type_occupation", length = 50)
-    private String autreTypeOccupation;
-
-    @Column(name = "date_delivrance_type_occupation")
-    private LocalDate dateDelivranceTypeOccupation;
-
-    @Column(name = "usagee", length = 50)
-    private String usagee;
-
-    @Column(name = "num_compteur_sde", length = 50)
-    private String numCompteurSde;
-
-    @Column(name = "num_compteur_senelec", length = 50)
-    private String numCompteurSenelec;
-
-    @Column(name = "type_construction", length = 50)
-    private String typeConstruction;
-
-    @Column(name = "toiture", length = 50)
-    private String toiture;
-
-    @Column(name = "type_cloture", length = 50)
-    private String typeCloture;
-
-    @Column(name = "etat_cloture", length = 50)
-    private String etatCloture;
-
-    @Column(name = "type_revetement", length = 50)
-    private String typeRevetement;
-
-    @Column(name = "etat_revetement", length = 50)
-    private String etatRevetement;
-
-    @Column(name = "situation_route", length = 50)
-    private String situationRoute;
-
-    @Column(name = "type_route", length = 50)
-    private String typeRoute;
-
-    @Column(name = "garage", length = 50)
-    private String garage;
-
-    @Column(name = "qualite_porte_fenetre", length = 50)
-    private String qualitePorteFenetre;
-
-    @Column(name = "type_carrelage", length = 50)
-    private String typeCarrelage;
-
-    @Column(name = "menuiserie", length = 50)
-    private String menuiserie;
-
-    @Column(name = "conception_pieces", length = 50)
-    private String conceptionPieces;
-
-    @Column(name = "appareils_sanitaires", length = 50)
-    private String appareilsSanitaires;
-
-    @Column(name = "parking_interieur", length = 50)
-    private String parkingInterieur;
-
-    @Column(name = "nb_ascenseurs")
-    private Integer nbAscenseurs;
-
-    @Column(name = "nb_salle_bain")
-    private Integer nbSalleBain;
-
-    @Column(name = "nb_salle_eau")
-    private Integer nbSalleEau;
-
-    @Column(name = "nb_piece_reception")
-    private Integer nbPieceReception;
-
-    @Column(name = "nb_total_piece")
-    private Integer nbTotalPiece;
-
-    @Column(name = "nb_etage")
-    private Integer nbEtage;
-
-    @Column(name = "confort", length = 50)
-    private String confort;
-
-    @Column(name = "valeur_locative_mensuelle")
-    private Double valeurLocativeMensuelle;
-
-    @Column(name = "valeur_locative_mensuelle_saisie")
-    private Double valeurLocativeMensuelleSaisie;
-
-    @Column(name = "escalier", length = 10)
-    private String escalier;
-
-    @Column(name = "vide_ordure", length = 10)
-    private String videOrdure;
-
-    @Column(name = "monte_charge", length = 10)
-    private String monteCharge;
-
-    @Column(name = "groupe_electrogene", length = 10)
-    private String groupeElectrogene;
-
-    @Column(name = "dependance_isolee", length = 10)
-    private String dependanceIsolee;
-
-    @Column(name = "garage_souterrain", length = 10)
-    private String garageSouterrain;
-
-    @Column(name = "systeme_climatisation", length = 10)
-    private String systemeClimatisation;
-
-    @Column(name = "systeme_domotique", length = 10)
-    private String systemeDomotique;
-
-    @Column(name = "balcon", length = 10)
-    private String balcon;
-
-    @Column(name = "terrasse", length = 10)
-    private String terrasse;
-
-    @Column(name = "systeme_surveillance", length = 10)
-    private String systemeSurveillance;
-
-    @Column(name = "amenagement_paysager", length = 10)
-    private String amenagementPaysager;
-
-    @Column(name = "jardin", length = 10)
-    private String jardin;
-
-    @Column(name = "piscine", length = 10)
-    private String piscine;
-
-    @Column(name = "cours_de_tennis", length = 10)
-    private String coursDeTennis;
-
-    @Column(name = "cours_gazonnee", length = 10)
-    private String coursGazonnee;
-
-    @Column(name = "terrain_golf", length = 10)
-    private String terrainGolf;
-
-    @Column(name = "autre", length = 10)
-    private String autre;
-
-    @Column(name = "angle", length = 10)
-    private String angle;
-
-    @Column(name = "eclairage_public", length = 10)
-    private String eclairagePublic;
-
-    @Column(name = "mur_en_ciment", length = 10)
-    private String murEnCiment;
-
-    @Column(name = "attributs_architecturaux", length = 10)
-    private String attributsArchitecturaux;
-
-    @Column(name = "trottoir", length = 10)
-    private String trottoir;
-
-    @Column(name = "nom_voirie", length = 50)
-    private String nomVoirie;
-
-    @Column(name = "type_voirie", length = 50)
-    private String typeVoirie;
-
-    @Column(name = "nom_autre_voirie", length = 50)
-    private String nomAutreVoirie;
-
-    @Column(name = "type_parcelle", length = 100)
-    private String typeParcelle;
-
-    @Column(name = "commentaire", length = Integer.MAX_VALUE)
-    private String commentaire;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prop_id")
-    private Proprietaire proprietaire;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "nicad_parcelle")
-    private Parcelle parcelle;
-
-    @OneToMany(mappedBy = "bien", fetch = FetchType.LAZY)
-    private List<Image> images;
-
-    @JsonIgnoreProperties("bienLoues")
-    @OneToMany(mappedBy = "bienLoue", fetch = FetchType.LAZY)
-    private List<BienLoue> bienLoues;
-
-    @JsonIgnoreProperties("bienRecenses")
-    @OneToMany(mappedBy = "bienRecense", fetch = FetchType.LAZY)
-    private List<BienRecense> bienRecenses;
-
-
     public String getIdentifiant() {
         return identifiant;
     }
@@ -294,6 +52,7 @@ public class Bien {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
+
     public String getQuartier() {
         return quartier;
     }
@@ -309,6 +68,7 @@ public class Bien {
     public void setVillage(String village) {
         this.village = village;
     }
+
     public String getNumPorteAdm() {
         return numPorteAdm;
     }
@@ -604,6 +364,7 @@ public class Bien {
     public void setNbPieceReception(Integer nbPieceReception) {
         this.nbPieceReception = nbPieceReception;
     }
+
     public Integer getNbTotalPiece() {
         return nbTotalPiece;
     }
@@ -635,6 +396,7 @@ public class Bien {
     public void setValeurLocativeMensuelle(Double valeurLocativeMensuelle) {
         this.valeurLocativeMensuelle = valeurLocativeMensuelle;
     }
+
     public Double getValeurLocativeMensuelleSaisie() {
         return valeurLocativeMensuelleSaisie;
     }
@@ -642,6 +404,7 @@ public class Bien {
     public void setValeurLocativeMensuelleSaisie(Double valeurLocativeMensuelleSaisie) {
         this.valeurLocativeMensuelleSaisie = valeurLocativeMensuelleSaisie;
     }
+
     public String getEscalier() {
         return escalier;
     }
@@ -858,10 +621,6 @@ public class Bien {
         this.typeParcelle = typeParcelle;
     }
 
-    public Proprietaire getProprietaire() {
-        return proprietaire;
-    }
-
     public String getCommentaire() {
         return commentaire;
     }
@@ -870,6 +629,9 @@ public class Bien {
         this.commentaire = commentaire;
     }
 
+    public Proprietaire getProprietaire() {
+        return proprietaire;
+    }
 
     public void setProprietaire(Proprietaire proprietaire) {
         this.proprietaire = proprietaire;
@@ -882,20 +644,6 @@ public class Bien {
     public void setParcelle(Parcelle parcelle) {
         this.parcelle = parcelle;
     }
-    public List<BienLoue> getBienLoues() {
-        return bienLoues;
-    }
-
-    public void setBienLoues(List<BienLoue> bienLoues) {
-        this.bienLoues = bienLoues;
-    }
-    public List<BienRecense> getBienRecenses() {
-        return bienRecenses;
-    }
-
-    public void setBienRecenses(List<BienRecense> bienRecenses) {
-        this.bienRecenses = bienRecenses;
-    }
 
     public List<Image> getImages() {
         return images;
@@ -904,4 +652,350 @@ public class Bien {
     public void setImages(List<Image> images) {
         this.images = images;
     }
+
+    public List<BienLoue> getBienLoues() {
+        return bienLoues;
+    }
+
+    public void setBienLoues(List<BienLoue> bienLoues) {
+        this.bienLoues = bienLoues;
+    }
+
+    public List<BienRecense> getBienRecenses() {
+        return bienRecenses;
+    }
+
+    public void setBienRecenses(List<BienRecense> bienRecenses) {
+        this.bienRecenses = bienRecenses;
+    }
+
+    @Id
+    @Column(name = "identifiant", nullable = false, unique = true, length = 50)
+    private String identifiant;
+
+    @JsonIgnore
+    @Column(name = "superficie")
+    private Double superficie;
+
+   @JsonIgnore
+    @Column(name = "propriete_en_location", length = 50)
+    private String proprieteEnLocation;
+
+   @JsonIgnore
+    @Column(name = "adresse")
+    private String adresse;
+
+   @JsonIgnore
+    @Column(name = "quartier")
+    private String quartier;
+
+   @JsonIgnore
+    @Column(name = "village")
+    private String village;
+
+   @JsonIgnore
+    @Column(name = "num_porte_adm", length = 50)
+    private String numPorteAdm;
+
+   @JsonIgnore
+    @Column(name = "code_de_rue_adm", length = 50)
+    private String codeDeRueAdm;
+
+   @JsonIgnore
+    @Column(name = "nom_rue")
+    private String nomRue;
+
+   @JsonIgnore
+    @Column(name = "type_lot", length = 50)
+    private String typeLot;
+
+   @JsonIgnore
+    @Column(name = "niveau_lot")
+    private Integer niveauLot;
+
+   @JsonIgnore
+    @Column(name = "localisation_lot", length = 50)
+    private String localisationLot;
+
+   @JsonIgnore
+    @Column(name = "situation_lot", length = 50)
+    private String situationLot;
+
+   @JsonIgnore
+    @Column(name = "num_lot", length = 50)
+    private String numLot;
+
+   @JsonIgnore
+    @Column(name = "valeur_locative_annuelle")
+    private Double valeurLocativeAnnuelle;
+
+   @JsonIgnore
+    @Column(name = "valeur_locative_annuelle_saisie")
+    private Double valeurLocativeAnnuelleSaisie;
+
+   @JsonIgnore
+    @Column(name = "num_titre_foncier", length = 50)
+    private String numTitreFoncier;
+
+   @JsonIgnore
+    @Column(name = "date_acquisition")
+    private LocalDate dateAcquisition;
+
+   @JsonIgnore
+    @Column(name = "type_occupation", length = 50)
+    private String typeOccupation;
+
+   @JsonIgnore
+    @Column(name = "autre_type_occupation", length = 50)
+    private String autreTypeOccupation;
+
+   @JsonIgnore
+    @Column(name = "date_delivrance_type_occupation")
+    private LocalDate dateDelivranceTypeOccupation;
+
+   @JsonIgnore
+    @Column(name = "usagee", length = 50)
+    private String usagee;
+
+   @JsonIgnore
+    @Column(name = "num_compteur_sde", length = 50)
+    private String numCompteurSde;
+
+   @JsonIgnore
+    @Column(name = "num_compteur_senelec", length = 50)
+    private String numCompteurSenelec;
+
+   @JsonIgnore
+    @Column(name = "type_construction", length = 50)
+    private String typeConstruction;
+
+   @JsonIgnore
+    @Column(name = "toiture", length = 50)
+    private String toiture;
+
+   @JsonIgnore
+    @Column(name = "type_cloture", length = 50)
+    private String typeCloture;
+
+   @JsonIgnore
+    @Column(name = "etat_cloture", length = 50)
+    private String etatCloture;
+
+   @JsonIgnore
+    @Column(name = "type_revetement", length = 50)
+    private String typeRevetement;
+
+   @JsonIgnore
+    @Column(name = "etat_revetement", length = 50)
+    private String etatRevetement;
+
+   @JsonIgnore
+    @Column(name = "situation_route", length = 50)
+    private String situationRoute;
+
+   @JsonIgnore
+    @Column(name = "type_route", length = 50)
+    private String typeRoute;
+
+   @JsonIgnore
+    @Column(name = "garage", length = 50)
+    private String garage;
+
+   @JsonIgnore
+    @Column(name = "qualite_porte_fenetre", length = 50)
+    private String qualitePorteFenetre;
+
+   @JsonIgnore
+    @Column(name = "type_carrelage", length = 50)
+    private String typeCarrelage;
+
+   @JsonIgnore
+    @Column(name = "menuiserie", length = 50)
+    private String menuiserie;
+
+   @JsonIgnore
+    @Column(name = "conception_pieces", length = 50)
+    private String conceptionPieces;
+
+   @JsonIgnore
+    @Column(name = "appareils_sanitaires", length = 50)
+    private String appareilsSanitaires;
+
+   @JsonIgnore
+    @Column(name = "parking_interieur", length = 50)
+    private String parkingInterieur;
+
+   @JsonIgnore
+    @Column(name = "nb_ascenseurs")
+    private Integer nbAscenseurs;
+
+   @JsonIgnore
+    @Column(name = "nb_salle_bain")
+    private Integer nbSalleBain;
+
+   @JsonIgnore
+    @Column(name = "nb_salle_eau")
+    private Integer nbSalleEau;
+
+   @JsonIgnore
+    @Column(name = "nb_piece_reception")
+    private Integer nbPieceReception;
+
+   @JsonIgnore
+    @Column(name = "nb_total_piece")
+    private Integer nbTotalPiece;
+
+   @JsonIgnore
+    @Column(name = "nb_etage")
+    private Integer nbEtage;
+
+   @JsonIgnore
+    @Column(name = "confort", length = 50)
+    private String confort;
+
+   @JsonIgnore
+    @Column(name = "valeur_locative_mensuelle")
+    private Double valeurLocativeMensuelle;
+
+   @JsonIgnore
+    @Column(name = "valeur_locative_mensuelle_saisie")
+    private Double valeurLocativeMensuelleSaisie;
+
+   @JsonIgnore
+    @Column(name = "escalier", length = 10)
+    private String escalier;
+
+   @JsonIgnore
+    @Column(name = "vide_ordure", length = 10)
+    private String videOrdure;
+
+   @JsonIgnore
+    @Column(name = "monte_charge", length = 10)
+    private String monteCharge;
+
+   @JsonIgnore
+    @Column(name = "groupe_electrogene", length = 10)
+    private String groupeElectrogene;
+
+   @JsonIgnore
+    @Column(name = "dependance_isolee", length = 10)
+    private String dependanceIsolee;
+
+   @JsonIgnore
+    @Column(name = "garage_souterrain", length = 10)
+    private String garageSouterrain;
+
+   @JsonIgnore
+    @Column(name = "systeme_climatisation", length = 10)
+    private String systemeClimatisation;
+
+   @JsonIgnore
+    @Column(name = "systeme_domotique", length = 10)
+    private String systemeDomotique;
+
+   @JsonIgnore
+    @Column(name = "balcon", length = 10)
+    private String balcon;
+
+   @JsonIgnore
+    @Column(name = "terrasse", length = 10)
+    private String terrasse;
+
+   @JsonIgnore
+    @Column(name = "systeme_surveillance", length = 10)
+    private String systemeSurveillance;
+
+   @JsonIgnore
+    @Column(name = "amenagement_paysager", length = 10)
+    private String amenagementPaysager;
+
+   @JsonIgnore
+    @Column(name = "jardin", length = 10)
+    private String jardin;
+
+   @JsonIgnore
+    @Column(name = "piscine", length = 10)
+    private String piscine;
+
+   @JsonIgnore
+    @Column(name = "cours_de_tennis", length = 10)
+    private String coursDeTennis;
+
+   @JsonIgnore
+    @Column(name = "cours_gazonnee", length = 10)
+    private String coursGazonnee;
+
+   @JsonIgnore
+    @Column(name = "terrain_golf", length = 10)
+    private String terrainGolf;
+
+   @JsonIgnore
+    @Column(name = "autre", length = 10)
+    private String autre;
+
+   @JsonIgnore
+    @Column(name = "angle", length = 10)
+    private String angle;
+
+   @JsonIgnore
+    @Column(name = "eclairage_public", length = 10)
+    private String eclairagePublic;
+
+   @JsonIgnore
+    @Column(name = "mur_en_ciment", length = 10)
+    private String murEnCiment;
+
+   @JsonIgnore
+    @Column(name = "attributs_architecturaux", length = 10)
+    private String attributsArchitecturaux;
+
+   @JsonIgnore
+    @Column(name = "trottoir", length = 10)
+    private String trottoir;
+
+   @JsonIgnore
+    @Column(name = "nom_voirie", length = 50)
+    private String nomVoirie;
+
+   @JsonIgnore
+    @Column(name = "type_voirie", length = 50)
+    private String typeVoirie;
+
+   @JsonIgnore
+    @Column(name = "nom_autre_voirie", length = 50)
+    private String nomAutreVoirie;
+
+   @JsonIgnore
+    @Column(name = "type_parcelle", length = 100)
+    private String typeParcelle;
+
+   @JsonIgnore
+    @Column(name = "commentaire", length = Integer.MAX_VALUE)
+    private String commentaire;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prop_id")
+    private Proprietaire proprietaire;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "nicad_parcelle")
+    private Parcelle parcelle;
+
+
+    @OneToMany(mappedBy = "bien", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Image> images;
+
+
+    @OneToMany(mappedBy = "bienLoue", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<BienLoue> bienLoues;
+
+
+    @OneToMany(mappedBy = "bienRecense", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<BienRecense> bienRecenses;
+
+
+
 }

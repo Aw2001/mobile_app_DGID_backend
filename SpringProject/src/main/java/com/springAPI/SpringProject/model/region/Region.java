@@ -2,6 +2,7 @@ package com.springAPI.SpringProject.model.region;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.springAPI.SpringProject.model.departement.Departement;
 import jakarta.persistence.*;
 
@@ -46,6 +47,7 @@ public class Region {
 
 
     @OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Departement> departements;
 
     public Integer getId() {

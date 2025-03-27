@@ -7,14 +7,38 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
+
 @Entity
 @Table(name = "tousleslocauxrecenses")
 public class BienRecense {
-    @Setter
+
     @EmbeddedId
     @Column(nullable = false, unique = true)
     private BienRecenseId id;
+
+    public BienRecenseId getId() {
+        return id;
+    }
+
+    public void setId(BienRecenseId id) {
+        this.id = id;
+    }
+
+    public Bien getBienRecense() {
+        return bienRecense;
+    }
+
+    public void setBienRecense(Bien bienRecense) {
+        this.bienRecense = bienRecense;
+    }
+
+    public Recensement getRecensement() {
+        return recensement;
+    }
+
+    public void setRecensement(Recensement recensement) {
+        this.recensement = recensement;
+    }
 
     @MapsId("identifiantLocal")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -22,7 +46,7 @@ public class BienRecense {
     @JsonIgnore
     private Bien bienRecense;
 
-    @Setter
+
     @MapsId("identifiantRecensement")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "identifiant_recensement")

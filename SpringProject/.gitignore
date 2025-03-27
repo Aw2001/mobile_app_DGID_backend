@@ -4,6 +4,13 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Fichiers sensibles ###
+.env
+*/**/.env
+
+### dossier frontend ###
+terangaCollecte/
+
 ### STS ###
 .apt_generated
 .classpath

@@ -9,7 +9,6 @@ import com.springAPI.SpringProject.model.utilisateur.Utilisateur;
 import com.springAPI.SpringProject.responses.LoginResponse;
 import com.springAPI.SpringProject.service.AuthenticationService;
 import com.springAPI.SpringProject.service.JwtService;
-import jdk.jshell.execution.Util;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -37,7 +36,7 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto){
         Utilisateur authenticatedUser = authenticationService.authenticate(loginUserDto);
-        System.out.println(authenticatedUser);
+
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
         LoginResponse loginResponse = new LoginResponse(jwtToken, jwtService.getExpirationTime());
