@@ -17,7 +17,7 @@ public interface DepartementRepository extends JpaRepository<Departement, Intege
     List<Departement> findAllDepartements();
 
     //methode pour lister tous les départements d'une région
-    @Query("SELECT d.nom FROM Departement d WHERE d.region.nom = :regionName")
+    @Query("SELECT DISTINCT d.nom FROM Departement d WHERE d.region.nom = :regionName")
     List<String> findByRegion(@Param("regionName") String regionName);
 
 }

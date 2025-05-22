@@ -12,8 +12,8 @@ import java.util.List;
 public interface DecretRepository extends JpaRepository<Decret, Long> {
 
 
-    @Query("SELECT d.prixTerrain FROM Decret d WHERE d.secteur = :secteur AND d.zone = :zone")
-    Double findPrixTerrainBySecteurAndZone(@Param("secteur") String secteur, @Param("zone") String zone);
+    @Query("SELECT d.prixTerrain FROM Decret d WHERE d.region = :region AND d.departement = :departement AND d.commune = :commune AND d.secteur = :secteur AND d.zone = :zone")
+    Double findPrixTerrainBySecteurAndZone(@Param("region") String region, @Param("departement") String departement, @Param("commune") String commune, @Param("secteur") String secteur, @Param("zone") String zone);
 
     @Query("SELECT DISTINCT d.departement FROM Decret d WHERE d.region = :region")
     List<String> findDepartementByRegion(@Param("region") String region);
@@ -26,8 +26,8 @@ public interface DecretRepository extends JpaRepository<Decret, Long> {
             @Param("commune") String commune
     );
 
-    @Query("SELECT DISTINCT d.zone FROM Decret d WHERE d.secteur = :secteur")
-    List<String> findZoneBySecteur(@Param("secteur") String secteur);
+    @Query("SELECT DISTINCT d.zone FROM Decret d WHERE d.region = :region AND d.departement = :departement AND d.commune = :commune AND d.secteur = :secteur")
+    List<String> findZoneBySecteur(@Param("region") String region, @Param("departement") String departement, @Param("commune") String commune, @Param("secteur") String secteur);
 
 
 }

@@ -14,6 +14,6 @@ public interface CommuneRepository extends JpaRepository<Commune, Integer> {
     @Query("SELECT c from Commune c")
     List<Commune> findAllCommunes();
 
-    @Query("SELECT c.nomCommun from Commune c WHERE c.departement.nom = :departementName")
+    @Query("SELECT DISTINCT c.nomCommun from Commune c WHERE c.departement.nom = :departementName")
     List<String>findCommuneByDepartementName(@Param("departementName") String departementName);
 }

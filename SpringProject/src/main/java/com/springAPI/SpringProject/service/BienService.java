@@ -26,6 +26,8 @@ public class BienService {
 
     @Autowired
     private RecensementUtilisateurRepository recensementUtilisateurRepository;
+    @Autowired
+    private RecensementRepository recensementRepository;
 
     @Autowired
     private BienRecenseRepository bienRecenseRepository;
@@ -48,11 +50,7 @@ public class BienService {
             throw new IllegalArgumentException("L'identifiant du bien est obligatoire");
 
         } else if (bienRepository.findByIdentifiant(dto.getIdentifiant()) == null) {
-            //trouver le recensement actif
-            RecensementUtilisateur recensementUtilisateur = recensementUtilisateurRepository
-                    .findByRecensementId(recensementId)
-                    .orElseThrow(() -> new RuntimeException("Aucun recensement actif pour cet utilisateur"));
-            Recensement recensement = recensementUtilisateur.getRecensement();
+            Recensement recensement = recensementRepository.findByNumRecensement(recensementId);
 
             // Récupérer la parcelle existante
             if( (dto.getIdParcelle() != null && !dto.getIdParcelle().isEmpty()) || (dto.getIdProprietaire() != null && !dto.getIdProprietaire().isEmpty()) ){
@@ -273,5 +271,13 @@ public class BienService {
 
     public List<Bien> getAllBiens() {
         return bienRepository.findBiens();
+    }
+
+    public Long getNumberOfBien() {
+        return bienRepository.countBiens();
+    }
+
+    public List<Bien> getAllBienByNicad(String nicad) {
+        return bienRepository.findBienByNicad(nicad);
     }
 }

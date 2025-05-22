@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -27,4 +28,12 @@ public interface UtilisateurRepository extends CrudRepository<Utilisateur, Strin
     Optional<Utilisateur> findByVerificationCode(String verificationCode);
     Optional<Utilisateur> findByIdentifiant(String email);
 
+    @Query("SELECT u.prenom, u.nom FROM Utilisateur u WHERE u.username = :username")
+    String returnFirstNameAndLastName(@Param("username") String username);
+
+    @Query("SELECT u.identifiant FROM Utilisateur u WHERE u.username = :username")
+    String returnEmail(@Param("username") String username);
+
+    @Query("SELECT u FROM Utilisateur u WHERE u.typePlateforme = 'MOBILE'")
+    List<Utilisateur> returnAgents();
 }

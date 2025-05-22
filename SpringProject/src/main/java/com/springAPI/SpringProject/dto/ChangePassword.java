@@ -5,6 +5,7 @@ import lombok.Setter;
 
 public class ChangePassword {
     String password;
+    String repeatPassword;
 
     public String getPassword() {
         return password;
@@ -22,5 +23,5 @@ public class ChangePassword {
         this.repeatPassword = repeatPassword;
     }
 
-    String repeatPassword;
+
 }

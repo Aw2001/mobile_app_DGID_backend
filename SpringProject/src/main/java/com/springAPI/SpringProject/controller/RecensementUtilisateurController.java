@@ -11,6 +11,7 @@ import com.springAPI.SpringProject.repository.UtilisateurRepository;
 import com.springAPI.SpringProject.service.RecensementUtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class RecensementUtilisateurController {
     @Autowired
     private RecensementUtilisateurService recensementUtilisateurService;
 
+    //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<RecensementUtilisateur> creerRecensementUtilisateur(@RequestBody RecensementUtilisateurDto dto) {
 
@@ -30,6 +32,7 @@ public class RecensementUtilisateurController {
 
     }
 
+    //@PreAuthorize("hasAnyRole('AGENT', 'ADMIN')")
     @GetMapping("/all/{email}")
     public ResponseEntity<List<Recensement>> getAllRecensementUtilisateur(@PathVariable String email) {
         List<Recensement> recensements = recensementUtilisateurService.getAllRecensementUtilisateur(email);

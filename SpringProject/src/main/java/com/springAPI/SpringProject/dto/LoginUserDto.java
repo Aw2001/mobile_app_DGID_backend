@@ -1,9 +1,5 @@
 package com.springAPI.SpringProject.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
-
 public class LoginUserDto {
     public String getUsername() {
         return username;
@@ -20,7 +16,14 @@ public class LoginUserDto {
     public void setPassword(String password) {
         this.password = password;
     }
+    public String getPlatform() {
+        return platform;
+    }
 
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
     private String username;
     private String password;
+    private String platform;
 }

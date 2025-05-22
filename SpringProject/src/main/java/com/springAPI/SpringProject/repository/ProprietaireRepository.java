@@ -14,4 +14,7 @@ public interface ProprietaireRepository extends JpaRepository<Proprietaire, Stri
     @Query("SELECT p from Proprietaire p WHERE p.numIdentifiant= :numIdentifiant")
     Proprietaire findByNumIdentifiant(@Param("numIdentifiant") String numIdentifiant);
 
+    @Query("SELECT COUNT(p) FROM Proprietaire p")
+    long countProprietaire();
+
 }

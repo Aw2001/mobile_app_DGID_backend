@@ -51,12 +51,21 @@ public class RegisterUserDto {
     public void setRole(String role) {
         this.role = role;
     }
+    public String getTypePlateforme() {
+        return typePlateforme;
+    }
 
+    public void setTypePlateforme(String typePlateforme) {
+        this.typePlateforme = typePlateforme;
+    }
     private String email;
     private String prenom;
     private String nom;
     private String username;
     private String password;
     private String role;
+    private String typePlateforme;
+
+
 
 }

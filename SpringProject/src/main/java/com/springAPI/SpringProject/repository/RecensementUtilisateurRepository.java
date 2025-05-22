@@ -23,4 +23,6 @@ public interface RecensementUtilisateurRepository extends JpaRepository<Recensem
             "WHERE ru.utilisateur.identifiant = :email ")
     List<Recensement> findRecensementsUtilisateurActifs(@Param("email") String email);
 
+
+
 }

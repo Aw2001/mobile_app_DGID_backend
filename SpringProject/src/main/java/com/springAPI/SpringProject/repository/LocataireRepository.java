@@ -14,4 +14,6 @@ public interface LocataireRepository extends JpaRepository<Locataire, String> {
     @Query("SELECT l from Locataire l WHERE l.cni= :cni")
     Locataire findByCni(@Param("cni") String cni);
 
+    @Query("SELECT COUNT(l) FROM Locataire l")
+    long countLocataire();
 }

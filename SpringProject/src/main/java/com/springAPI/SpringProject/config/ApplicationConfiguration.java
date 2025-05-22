@@ -31,7 +31,6 @@ public class ApplicationConfiguration {
                 user = userRepository.findByUsername(username);
             }
 
-            System.out.println(username+"moiiiiiii");
             if (user == null) {
                 throw new UsernameNotFoundException("User not found");
             }

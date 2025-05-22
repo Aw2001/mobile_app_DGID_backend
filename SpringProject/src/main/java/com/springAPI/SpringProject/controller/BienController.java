@@ -19,6 +19,7 @@ public class BienController {
     @Autowired
     private BienService bienService;
 
+    //@PreAuthorize("hasAnyRole('AGENT', 'ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<Bien> creerBien(
         @RequestParam String recensementId,
@@ -28,6 +29,7 @@ public class BienController {
         return ResponseEntity.ok(bienEnregistre);
     }
 
+    //@PreAuthorize("hasAnyRole('AGENT', 'ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<Bien> modifierBien(@RequestParam ("recensementId") String recensementId,
                                              @RequestBody BienDto dto) {
@@ -36,15 +38,29 @@ public class BienController {
 
     }
 
-
+    //@PreAuthorize("hasAnyRole('AGENT', 'ADMIN')")
     @GetMapping("/research/{identifiant}")
     public Optional<Bien> rechercherBien(@PathVariable String identifiant) {
         return bienService.rechercherBien(identifiant);
     }
 
+    //@PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
     public List<Bien> getAllBien() {
         return bienService.getAllBiens();
+    }
+
+    //@PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/all/{nicad}")
+    public List<Bien> getAllBienByNicad(@PathVariable String nicad
+    ) {
+        return bienService.getAllBienByNicad(nicad);
+    }
+
+    //@PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/count")
+    public Long getNumberOfBiens() {
+        return bienService.getNumberOfBien();
     }
 
 

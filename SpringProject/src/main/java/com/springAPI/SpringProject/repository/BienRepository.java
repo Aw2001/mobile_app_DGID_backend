@@ -18,4 +18,10 @@ public interface BienRepository extends JpaRepository<Bien, String> {
 
     @Query("SELECT b FROM Bien b")
     List<Bien> findBiens();
+
+    @Query("SELECT COUNT(b) FROM Bien b")
+    long countBiens();
+
+    @Query("SELECT b from Bien b WHERE b.parcelle.nicad = :nicad")
+    List<Bien> findBienByNicad(@Param("nicad") String nicad);
 }

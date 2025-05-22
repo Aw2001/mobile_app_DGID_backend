@@ -4,6 +4,7 @@ import com.springAPI.SpringProject.model.image.Image;
 import com.springAPI.SpringProject.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +16,8 @@ import java.io.IOException;
 public class ImageController {
     @Autowired
     private ImageService imageService;
-
+    
+    //@PreAuthorize("hasAnyRole('AGENT', 'ADMIN')")
     @PostMapping("/add/{idBien}")
     public ResponseEntity<String> uploadImage(@PathVariable String idBien, @RequestParam("file") MultipartFile file) {
         try {

@@ -73,7 +73,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 // Récupérer lastLogout depuis la base de données (exemple)
 
                 Instant lastLogout = utilisateurRepository.findLastLogoutByUsername(userName);
-                System.out.println("eeeeee"+lastLogout);
                 if (jwtService.isTokenValid(jwt, userDetails, lastLogout)) {
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                             userDetails,

@@ -21,6 +21,9 @@ public interface RecensementRepository extends JpaRepository<Recensement, String
     @Query("SELECT r FROM Recensement r where r.etat = 'A compléter' ")
     List<Recensement> findRecensementsActifs();
 
+    @Query("SELECT r FROM Recensement r")
+    List<Recensement> findRecensements();
+
     //nombre de recensements créés
     @Query("SELECT COUNT(r) FROM Recensement r")
     long countRecensements();

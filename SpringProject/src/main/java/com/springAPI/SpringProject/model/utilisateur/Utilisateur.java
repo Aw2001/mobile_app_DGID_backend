@@ -8,12 +8,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -97,6 +99,13 @@ public class Utilisateur implements UserDetails {
     public void setRecensementUtilisateurs(List<RecensementUtilisateur> recensementUtilisateurs) {
         this.recensementUtilisateurs = recensementUtilisateurs;
     }
+    public String getTypePlateforme() {
+        return typePlateforme;
+    }
+
+    public void setTypePlateforme(String typePlateforme) {
+        this.typePlateforme = typePlateforme;
+    }
 
     //email
     @Id
@@ -118,6 +127,9 @@ public class Utilisateur implements UserDetails {
     @Column(name = "role")
     private String role;
 
+    @Column(name = "type_plateforme")
+    private String typePlateforme;
+
     @Column(name = "last_log_out_time")
     private Instant lastLogoutTime;
 
@@ -133,13 +145,14 @@ public class Utilisateur implements UserDetails {
     @OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY)
     private List<RecensementUtilisateur> recensementUtilisateurs;
 
-    public Utilisateur(String identifiant, String prenom, String nom, String username, String password, String role) {
+    public Utilisateur(String identifiant, String prenom, String nom, String username, String password, String role, String typePlateforme) {
         this.identifiant = identifiant;
         this.prenom = prenom;
         this.nom = nom;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.typePlateforme = typePlateforme;
     }
 
     public Utilisateur() {}
@@ -148,7 +161,7 @@ public class Utilisateur implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.role));
     }
 
     //TODO: add proper boolean checks

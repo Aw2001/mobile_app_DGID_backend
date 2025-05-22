@@ -55,4 +55,7 @@ public class ProprietaireService {
         return proprietaireExistant;
 
     }
+    public Long getNumberOfProprietaire() {
+        return proprietaireRepository.countProprietaire();
+    }
 }

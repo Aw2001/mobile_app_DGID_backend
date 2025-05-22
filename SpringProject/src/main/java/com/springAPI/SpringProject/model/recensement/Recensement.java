@@ -52,6 +52,17 @@ public class Recensement {
     @Column(name = "section", length = 50)
     private String section;
 
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    @Column(name = "titre", length = 50)
+    private String titre;
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime dateCreation;

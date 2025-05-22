@@ -16,16 +16,16 @@ public class DecretService {
 
     }
 
-    public Double getPrixTerrainBySecteurAndZone(String secteur, String zone) {
-        return decretRepository.findPrixTerrainBySecteurAndZone(secteur, zone);
+    public Double getPrixTerrainBySecteurAndZone(String region, String departement, String commune, String secteur, String zone) {
+        return decretRepository.findPrixTerrainBySecteurAndZone(region, departement, commune, secteur, zone);
     }
 
     public List<String> getCommuneByDepartement(String departement) {
         return decretRepository.findCommuneByDepartement(departement);
     }
 
-    public List<String> getZoneBySecteur(String secteur) {
-        return decretRepository.findZoneBySecteur(secteur);
+    public List<String> getZoneBySecteur(String region, String departement, String commune, String secteur) {
+        return decretRepository.findZoneBySecteur(region, departement, commune,secteur);
     }
 
     public List<String> getDepartementsByRegion(String region) {

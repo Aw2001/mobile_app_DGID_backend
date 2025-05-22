@@ -44,7 +44,7 @@ public class AuthenticationService {
     }
 
     public Utilisateur signup(RegisterUserDto input) {
-        Utilisateur user = new Utilisateur(input.getEmail(), input.getPrenom(), input.getNom(), input.getUsername(), passwordEncoder.encode(input.getPassword()), input.getRole());
+        Utilisateur user = new Utilisateur(input.getEmail(), input.getPrenom(), input.getNom(), input.getUsername(), passwordEncoder.encode(input.getPassword()), input.getRole(), input.getTypePlateforme());
         user.setVerificationCode(generateVerificationCode());
         user.setVerificationCodeExpiresAt(LocalDateTime.now().plusMinutes(15));
         user.setEnabled(false);
@@ -61,6 +61,11 @@ public class AuthenticationService {
                 throw new UsernameNotFoundException("User not found");
 
             }
+
+            if (!user.getTypePlateforme().equalsIgnoreCase(input.getPlatform())) {
+                throw new BadCredentialsException("Ce compte n'est pas autorisé sur cette plateforme.");
+            }
+            
             // Vérifiez le mot de passe
             if (!passwordEncoder.matches(input.getPassword(), user.getPassword())) {
                 throw new BadCredentialsException("Mot de passe incorrect");

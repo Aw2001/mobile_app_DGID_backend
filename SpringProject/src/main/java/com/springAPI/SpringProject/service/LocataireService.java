@@ -110,4 +110,8 @@ public class LocataireService {
                 .filter(propertyName -> wrappedSource.getPropertyValue(propertyName) == null)
                 .toArray(String[]::new);
     }
+
+    public Long getNumberOfLocataire() {
+        return locataireRepository.countLocataire();
+    }
 }

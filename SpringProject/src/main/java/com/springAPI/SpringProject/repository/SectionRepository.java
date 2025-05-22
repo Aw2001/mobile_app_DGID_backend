@@ -14,6 +14,6 @@ public interface SectionRepository extends JpaRepository<Section, String> {
     @Query("SELECT s from Section s")
     List<Section> findAllSection();
 
-    @Query("SELECT s.numeroSec from Section s WHERE s.commune.nomCommun = :communeName")
+    @Query("SELECT DISTINCT s.numeroSec from Section s WHERE s.commune.nomCommun = :communeName")
     List<String> findSectionByCommuneName(@Param("communeName") String communeName);
 }

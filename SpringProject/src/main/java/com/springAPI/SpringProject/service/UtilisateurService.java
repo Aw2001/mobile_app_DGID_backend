@@ -52,4 +52,17 @@ public class UtilisateurService {
         utilisateurDto.setRole(user.getRole());
         return utilisateurDto;
     }
+
+    public String getFirstNameAndLastName(String username) {
+        return utilisateurRepository.returnFirstNameAndLastName(username);
+    }
+
+    public String getEmailByUsername(String username) {
+        return utilisateurRepository.returnEmail(username);
+    }
+
+    public List<Utilisateur> getAgents() {
+        return utilisateurRepository.returnAgents();
+    }
+
 }
