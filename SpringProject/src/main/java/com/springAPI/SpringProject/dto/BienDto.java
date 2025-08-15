@@ -16,7 +16,7 @@ public class BienDto {
         this.identifiant = identifiant;
     }
 
-    private String identifiant;
+
 
     public Double getSuperficie() {
         return superficie;
@@ -200,14 +200,6 @@ public class BienDto {
 
     public void setNumCompteurSenelec(String numCompteurSenelec) {
         this.numCompteurSenelec = numCompteurSenelec;
-    }
-
-    public List<String> getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(List<String> photoUrl) {
-        this.photoUrl = photoUrl;
     }
 
     public String getTypeConstruction() {
@@ -650,6 +642,7 @@ public class BienDto {
         this.idParcelle = idParcelle;
     }
 
+    private String identifiant;
     private Double superficie;
     private String proprieteEnLocation;
     private String adresse;
@@ -673,7 +666,6 @@ public class BienDto {
     private String usagee;
     private String numCompteurSde;
     private String numCompteurSenelec;
-    private List<String> photoUrl;
     private String typeConstruction;
     private String toiture;
     private String typeCloture;

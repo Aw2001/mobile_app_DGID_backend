@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ProprietaireRepository extends JpaRepository<Proprietaire, String> {
 
@@ -16,5 +18,8 @@ public interface ProprietaireRepository extends JpaRepository<Proprietaire, Stri
 
     @Query("SELECT COUNT(p) FROM Proprietaire p")
     long countProprietaire();
+
+    @Query("SELECT p FROM Proprietaire p")
+    List<Proprietaire> returnProprietaires();
 
 }

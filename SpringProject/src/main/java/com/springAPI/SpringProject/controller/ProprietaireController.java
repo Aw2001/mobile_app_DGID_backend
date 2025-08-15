@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/proprietaires")
 public class ProprietaireController {
@@ -37,5 +39,9 @@ public class ProprietaireController {
     @GetMapping("/count")
     public Long getNumberOfProprietaires() {
         return proprietaireService.getNumberOfProprietaire();
+    }
+    @GetMapping("/all")
+    public List<Proprietaire> getProprietaires() {
+        return proprietaireService.getProprietaires();
     }
 }

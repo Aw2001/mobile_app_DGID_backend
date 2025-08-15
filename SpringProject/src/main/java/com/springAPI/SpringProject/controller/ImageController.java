@@ -10,6 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/images")
@@ -26,5 +28,11 @@ public class ImageController {
         } catch (IOException e) {
             return ResponseEntity.status(500).body("Failed to upload image: " + e.getMessage());
         }
+    }
+
+    //@PreAuthorize("hasAnyRole('AGENT', 'ADMIN')")
+    @GetMapping("/research/{idBien}")
+    public List<Image> researchImage(@PathVariable String idBien) {
+        return imageService.findImageById(idBien);
     }
 }

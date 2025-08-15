@@ -1,6 +1,7 @@
 package com.springAPI.SpringProject.service;
 
 import com.springAPI.SpringProject.model.proprietaire.Proprietaire;
+import com.springAPI.SpringProject.model.utilisateur.Utilisateur;
 import com.springAPI.SpringProject.repository.ProprietaireRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
@@ -10,6 +11,7 @@ import java.beans.FeatureDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @Service
@@ -57,5 +59,8 @@ public class ProprietaireService {
     }
     public Long getNumberOfProprietaire() {
         return proprietaireRepository.countProprietaire();
+    }
+    public List<Proprietaire> getProprietaires() {
+        return proprietaireRepository.returnProprietaires();
     }
 }

@@ -53,4 +53,40 @@ public class RecensementUtilisateurService {
     public List<Recensement> getAllRecensementUtilisateur(String email) {
         return recensementUtilisateurRepository.findRecensementsUtilisateurActifs(email);
     }
+    
+    public RecensementUtilisateur modifierRecensementUtilisateur(RecensementUtilisateurDto dto, String ancienRecensementId, String ancienUtilisateurId) {
+        // Vérification de l'existence de l'association à modifier
+        RecensementUtilisateurId ancienId = new RecensementUtilisateurId();
+        ancienId.setIdentifiantRecensement(ancienRecensementId);
+        ancienId.setIdentifiantUtilisateur(ancienUtilisateurId);
+        
+        RecensementUtilisateur recensementUtilisateur = recensementUtilisateurRepository.findById(ancienId)
+                .orElseThrow(() -> new RuntimeException("Association RecensementUtilisateur non trouvée"));
+        
+        // Vérification des nouvelles entités
+        Recensement nouveauRecensement = recensementRepository.findByNumRecensement(dto.getIdentifiantRecensement());
+        if (nouveauRecensement == null) {
+            throw new RuntimeException("Recensement non trouvé avec l'identifiant: " + dto.getIdentifiantRecensement());
+        }
+        
+        Utilisateur nouveauUtilisateur = utilisateurRepository.findByEmail(dto.getIdentifiantUtilisateur());
+        if (nouveauUtilisateur == null) {
+            throw new RuntimeException("Utilisateur non trouvé avec l'email: " + dto.getIdentifiantUtilisateur());
+        }
+        
+        // Suppression de l'ancienne association
+        recensementUtilisateurRepository.delete(recensementUtilisateur);
+        
+        // Création de la nouvelle association
+        RecensementUtilisateurId nouveauId = new RecensementUtilisateurId();
+        nouveauId.setIdentifiantRecensement(dto.getIdentifiantRecensement());
+        nouveauId.setIdentifiantUtilisateur(dto.getIdentifiantUtilisateur());
+        
+        RecensementUtilisateur nouveauRecensementUtilisateur = new RecensementUtilisateur();
+        nouveauRecensementUtilisateur.setId(nouveauId);
+        nouveauRecensementUtilisateur.setRecensement(nouveauRecensement);
+        nouveauRecensementUtilisateur.setUtilisateur(nouveauUtilisateur);
+        
+        return recensementUtilisateurRepository.save(nouveauRecensementUtilisateur);
+    }
 }

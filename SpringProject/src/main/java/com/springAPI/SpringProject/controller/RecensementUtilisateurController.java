@@ -40,4 +40,16 @@ public class RecensementUtilisateurController {
         System.out.println(count);
         return ResponseEntity.ok(recensements);
     }
+    
+    //@PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/update/{ancienRecensementId}/{ancienUtilisateurId}")
+    public ResponseEntity<RecensementUtilisateur> modifierRecensementUtilisateur(
+            @RequestBody RecensementUtilisateurDto dto,
+            @PathVariable String ancienRecensementId,
+            @PathVariable String ancienUtilisateurId) {
+        
+        RecensementUtilisateur recensementUtilisateurModifie = 
+                recensementUtilisateurService.modifierRecensementUtilisateur(dto, ancienRecensementId, ancienUtilisateurId);
+        return ResponseEntity.ok(recensementUtilisateurModifie);
+    }
 }

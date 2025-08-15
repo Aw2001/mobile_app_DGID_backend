@@ -14,6 +14,7 @@ public class Image {
     private Long id;
 
     @Lob
+    @Basic(fetch = FetchType.EAGER)
     @Column(name = "image_data")
     private byte[] imageData;
 

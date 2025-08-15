@@ -102,6 +102,59 @@ public class BienService {
 
     }
 
+    public Bien saveBien(BienDto dto) {
+        Bien bien = new Bien();
+        Bien bienSauvegarde = new Bien();
+        Parcelle parcelle = new Parcelle();
+        Proprietaire proprietaire = new Proprietaire();
+
+        // Valider l'ID fourni
+        if (dto.getIdentifiant() == null || dto.getIdentifiant().isEmpty()) {
+
+            throw new IllegalArgumentException("L'identifiant du bien est obligatoire");
+
+        } else if (bienRepository.findByIdentifiant(dto.getIdentifiant()) == null) {
+
+
+            // Récupérer la parcelle existante
+            if( (dto.getIdParcelle() != null && !dto.getIdParcelle().isEmpty()) || (dto.getIdProprietaire() != null && !dto.getIdProprietaire().isEmpty()) ){
+
+                if ((dto.getIdParcelle() != null && !dto.getIdParcelle().isEmpty()) && (dto.getIdProprietaire() != null && !dto.getIdProprietaire().isEmpty())) {
+                    parcelle = parcelleRepository.findById(dto.getIdParcelle())
+                            .orElseThrow(() -> new RuntimeException("Parcelle non trouvé"));
+                    proprietaire = proprietaireRepository.findById(dto.getIdProprietaire())
+                            .orElseThrow(() -> new RuntimeException("Proprietaire non trouvé"));
+                    setBien(bien,dto);
+                    bien.setParcelle(parcelle);
+                    bien.setProprietaire(proprietaire);
+                }
+                else if (dto.getIdParcelle() != null && !dto.getIdParcelle().isEmpty()) {
+                    parcelle = parcelleRepository.findById(dto.getIdParcelle())
+                            .orElseThrow(() -> new RuntimeException("Parcelle non trouvé"));
+                    setBien(bien,dto);
+                    bien.setParcelle(parcelle);
+                } else {
+                    proprietaire = proprietaireRepository.findById(dto.getIdProprietaire())
+                            .orElseThrow(() -> new RuntimeException("Proprietaire non trouvé"));
+                    setBien(bien,dto);
+                    bien.setProprietaire(proprietaire);
+                }
+
+
+            } else  {
+                setBien(bien,dto);
+            }
+
+            bienSauvegarde = bienRepository.save(bien);
+            return bienSauvegarde;
+
+        } else {
+            System.out.println("Ce bien existe déjà");
+            return null;
+        }
+
+    }
+
     public Bien modifierBien(String recensementId, BienDto dto) {
 
         if (dto.getIdentifiant() == null || dto.getIdentifiant().isEmpty()) {
@@ -165,7 +218,48 @@ public class BienService {
 
     }
 
-    //public Bien modifierBienPourAdmin(String recensementId, BienDto dto) {}
+    public Bien updateBien(BienDto dto) {
+
+        if (dto.getIdentifiant() == null || dto.getIdentifiant().isEmpty()) {
+            throw new IllegalArgumentException("L'identifiant du bien est obligatoire");
+        } else {
+
+            Bien bienExistant = bienRepository.findByIdentifiant(dto.getIdentifiant());
+            if(bienExistant == null) {
+                System.out.println("Le bien n'existe pas");
+                return null;
+            } else {
+
+                // Mise à jour des champs non nuls depuis le DTO
+                BeanUtils.copyProperties(dto, bienExistant, getNullOrEmptyPropertyNames(dto));
+                if ( (dto.getIdProprietaire() != null && !dto.getIdProprietaire().isEmpty()) ||  (dto.getIdParcelle() != null && !dto.getIdParcelle().isEmpty()) ) {
+                    if ((dto.getIdProprietaire() != null && !dto.getIdProprietaire().isEmpty()) && (dto.getIdParcelle() != null && !dto.getIdParcelle().isEmpty())) {
+                        // Récupérer le propriétaire
+                        Proprietaire proprietaire = proprietaireRepository.findByNumIdentifiant(dto.getIdProprietaire());
+                        Parcelle parcelle = parcelleRepository.findByNicad(dto.getIdParcelle());
+                        bienExistant.setParcelle(parcelle);
+                        bienExistant.setProprietaire(proprietaire);
+
+
+                    } else if (dto.getIdParcelle() != null && !dto.getIdParcelle().isEmpty()) {
+                        Parcelle parcelle = parcelleRepository.findByNicad(dto.getIdParcelle());
+                        bienExistant.setParcelle(parcelle);
+                    } else {
+                        Proprietaire proprietaire = proprietaireRepository.findByNumIdentifiant(dto.getIdProprietaire());
+                        bienExistant.setProprietaire(proprietaire);
+                    }
+                }
+
+
+                // Sauvegarder le bien
+                Bien bienSauvegarde = bienRepository.save(bienExistant);
+
+                return bienSauvegarde;
+            }
+        }
+        // Récupérer le bien existant
+
+    }
 
     public String[] getNullOrEmptyPropertyNames(Object source) {
         final BeanWrapper wrappedSource = new BeanWrapperImpl(source);
@@ -186,7 +280,6 @@ public class BienService {
     public Optional<Bien> rechercherBien (String identifiant) {
         Optional<Bien> bienTrouve = bienRepository
                 .findById(identifiant);
-        System.out.println("hhhhhhhh"+bienTrouve);
         return bienTrouve;
     }
 

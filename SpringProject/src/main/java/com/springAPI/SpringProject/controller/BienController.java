@@ -29,11 +29,27 @@ public class BienController {
         return ResponseEntity.ok(bienEnregistre);
     }
 
+    //@PreAuthorize("hasAnyRole('ADMIN')")
+    @PostMapping("/web/add")
+    public ResponseEntity<Bien> saveBien(
+            @RequestBody BienDto dto) {
+
+        Bien bienEnregistre = bienService.saveBien(dto);
+        return ResponseEntity.ok(bienEnregistre);
+    }
+
     //@PreAuthorize("hasAnyRole('AGENT', 'ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<Bien> modifierBien(@RequestParam ("recensementId") String recensementId,
                                              @RequestBody BienDto dto) {
         Bien bienMisAJour = bienService.modifierBien(recensementId, dto);
+        return ResponseEntity.ok(bienMisAJour);
+
+    }
+    //@PreAuthorize("hasAnyRole(''ADMIN')")
+    @PutMapping("/web/update")
+    public ResponseEntity<Bien> updateBien(@RequestBody BienDto dto) {
+        Bien bienMisAJour = bienService.updateBien(dto);
         return ResponseEntity.ok(bienMisAJour);
 
     }
